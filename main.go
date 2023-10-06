@@ -74,7 +74,8 @@ const extensions = blackfriday.EXTENSION_NO_INTRA_EMPHASIS |
 	blackfriday.EXTENSION_AUTOLINK |
 	blackfriday.EXTENSION_STRIKETHROUGH |
 	blackfriday.EXTENSION_SPACE_HEADERS |
-	blackfriday.EXTENSION_NO_EMPTY_LINE_BEFORE_BLOCK
+	blackfriday.EXTENSION_NO_EMPTY_LINE_BEFORE_BLOCK |
+	blackfriday.EXTENSION_HARD_LINE_BREAK
 
 // policy for GitHub Flavored Markdown-like sanitization.
 var policy = func() *bluemonday.Policy {
@@ -254,8 +255,8 @@ func highlightCode(src []byte, lang string) (highlightedCode []byte, ok bool) {
 					anns = append(anns, &annotate.Annotation{Start: beginOffsetRight, End: endOffsetRight, Left: []byte(`<span class="gi input-block">`), Right: []byte(`</span>`), WantInner: 0})
 
 					if '@' != lineFirstChar {
-						//leftContent := string(src[beginOffsetLeft:endOffsetLeft])
-						//rightContent := string(src[beginOffsetRight:endOffsetRight])
+						// leftContent := string(src[beginOffsetLeft:endOffsetLeft])
+						// rightContent := string(src[beginOffsetRight:endOffsetRight])
 						// This is needed to filter out the "-" and "+" at the beginning of each line from being highlighted.
 						// TODO: Still not completely filtered out.
 						leftContent := ""
